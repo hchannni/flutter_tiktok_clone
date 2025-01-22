@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tiktok_clone/constants/gaps.dart';
 import 'package:flutter_tiktok_clone/constants/sizes.dart';
+import 'package:flutter_tiktok_clone/features/authentication/username_screen.dart';
 import 'package:flutter_tiktok_clone/features/authentication/login_screen.dart';
 import 'package:flutter_tiktok_clone/features/authentication/widgets/auth_button.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -8,10 +9,18 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
 
-  void onLoginTap(BuildContext context) {
+  void _onLoginTap(BuildContext context) {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => LoginScreen(),
+      ),
+    );
+  }
+
+  void _onEmailTap(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => UsernameScreen(),
       ),
     );
   }
@@ -26,7 +35,7 @@ class SignUpScreen extends StatelessWidget {
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
-            children: const [
+            children: [
               Gaps.v80,
               Text(
                 "Sign up for TikTok",
@@ -45,9 +54,12 @@ class SignUpScreen extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               Gaps.v40,
-              AuthButton(
-                icon: FaIcon(FontAwesomeIcons.user),
-                text: 'Use Email & Password',
+              GestureDetector(
+                onTap: () => _onEmailTap(context),
+                child: AuthButton(
+                  icon: FaIcon(FontAwesomeIcons.user),
+                  text: 'Use Email & Password',
+                ),
               ),
               Gaps.v16,
               AuthButton(
@@ -60,7 +72,7 @@ class SignUpScreen extends StatelessWidget {
       ),
       bottomNavigationBar: BottomAppBar(
         elevation: 2,
-        color: Colors.grey.shade100,
+        color: Colors.grey.shade50,
         height: Sizes.size60,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -68,7 +80,7 @@ class SignUpScreen extends StatelessWidget {
             Text('Already have an account?'),
             Gaps.h5,
             GestureDetector(
-              onTap: () => onLoginTap(context),
+              onTap: () => _onLoginTap(context),
               child: Text(
                 'Log in',
                 style: TextStyle(
