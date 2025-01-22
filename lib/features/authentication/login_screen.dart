@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tiktok_clone/constants/gaps.dart';
 import 'package:flutter_tiktok_clone/constants/sizes.dart';
+import 'package:flutter_tiktok_clone/features/authentication/login_form_screen.dart';
 import 'package:flutter_tiktok_clone/features/authentication/widgets/auth_button.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -9,6 +10,14 @@ class LoginScreen extends StatelessWidget {
 
   void _onSignUpTap(BuildContext context) {
     Navigator.of(context).pop();
+  }
+
+  void _onEmailLoginTap(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const LoginFormScreen(),
+      ),
+    );
   }
 
   @override
@@ -21,7 +30,7 @@ class LoginScreen extends StatelessWidget {
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
-            children: const [
+            children: [
               Gaps.v80,
               Text(
                 "Log in to TikTok",
@@ -40,9 +49,13 @@ class LoginScreen extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               Gaps.v40,
-              AuthButton(
-                icon: FaIcon(FontAwesomeIcons.user),
-                text: 'Use Email & Password',
+              GestureDetector(
+                onTap: () => _onEmailLoginTap(
+                    context), // stateless widget이므로 context를 전달해 줘야 한다.
+                child: AuthButton(
+                  icon: FaIcon(FontAwesomeIcons.user),
+                  text: 'Use Email & Password',
+                ),
               ),
               Gaps.v16,
               AuthButton(
