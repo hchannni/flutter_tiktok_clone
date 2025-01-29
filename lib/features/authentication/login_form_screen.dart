@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tiktok_clone/constants/gaps.dart';
 import 'package:flutter_tiktok_clone/constants/sizes.dart';
 import 'package:flutter_tiktok_clone/features/authentication/widgets/form_button.dart';
+import 'package:flutter_tiktok_clone/features/onboarding/interests_screen.dart';
 
 class LoginFormScreen extends StatefulWidget {
   const LoginFormScreen({super.key});
@@ -19,6 +20,12 @@ class _LoginFormScreenState extends State<LoginFormScreen> {
         // 반환값이 true이면, 에러가 없다는 뜻이다.
         // form을 save하면, 모든 필드에 onSaved 콜백 함수를 실행한다.
         _formKey.currentState!.save();
+
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => const InterestsScreen(),
+          ),
+        );
       }
     }
   }
