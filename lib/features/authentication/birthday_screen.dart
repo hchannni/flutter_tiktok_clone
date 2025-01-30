@@ -28,11 +28,13 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
   }
 
   void _onNextTap() {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => const InterestsScreen(),
-      ),
-    );
+    Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(
+          builder: (context) => const InterestsScreen(),
+        ), (route) {
+      // return true; 를 하면 이전 route를 유지하고 싶다.
+      return false; // 이전의 모든 route를 유지하고 싶지 않다. -> 이제, 다음 화면에서는 뒤로 갈 수 없다.
+    });
   }
 
   void _setTextFieldDate(DateTime date) {
