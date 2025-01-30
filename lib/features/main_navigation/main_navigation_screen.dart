@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -28,28 +29,44 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: screens[_selectedIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        // selectedItemColor: Theme.of(context).primaryColor,
-        type: BottomNavigationBarType.shifting,
-        currentIndex: _selectedIndex,
-        onTap: _onTap,
+    // return Scaffold(
+    //   body: screens[_selectedIndex],
+    //   bottomNavigationBar: BottomNavigationBar(
+    //     // selectedItemColor: Theme.of(context).primaryColor,
+    //     type: BottomNavigationBarType.shifting,
+    //     currentIndex: _selectedIndex,
+    //     onTap: _onTap,
+    //     items: [
+    //       BottomNavigationBarItem(
+    //         icon: FaIcon(FontAwesomeIcons.house),
+    //         label: "Home",
+    //         tooltip: "What are you?",
+    //         backgroundColor: Colors.amber,
+    //       ),
+    //       BottomNavigationBarItem(
+    //         icon: FaIcon(FontAwesomeIcons.magnifyingGlass),
+    //         label: "Search",
+    //         tooltip: "What are you?",
+    //         backgroundColor: Colors.teal,
+    //       ),
+    //     ],
+    //   ),
+    // );
+
+    return CupertinoTabScaffold(
+      tabBar: CupertinoTabBar(
         items: [
           BottomNavigationBarItem(
-            icon: FaIcon(FontAwesomeIcons.house),
+            icon: Icon(CupertinoIcons.house),
             label: "Home",
-            tooltip: "What are you?",
-            backgroundColor: Colors.amber,
           ),
           BottomNavigationBarItem(
-            icon: FaIcon(FontAwesomeIcons.magnifyingGlass),
+            icon: Icon(CupertinoIcons.search),
             label: "Search",
-            tooltip: "What are you?",
-            backgroundColor: Colors.teal,
           ),
         ],
       ),
+      tabBuilder: (context, index) => screens[index],
     );
   }
 }
